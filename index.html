@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Второй цикл — комплекс переработки пластмассы</title>
+  <!-- Шрифт для чистого современного вида -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f7fb;
+      color: #1a2639;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    /* Типографика */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.25rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 2.2rem;
+      margin-bottom: 1.2rem;
+      border-left: 6px solid #2a7f6e;
+      padding-left: 1rem;
+    }
+
+    .subhead {
+      font-size: 1.1rem;
+      color: #3b4a5e;
+      margin-bottom: 1.5rem;
+    }
+
+    .speaker {
+      display: inline-block;
+      background: #e9edf4;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1f3a4b;
+      margin-top: 0.25rem;
+    }
+
+    /* Карточки */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin: 1.8rem 0;
+    }
+
+    .card {
+      background: #f9fbfd;
+      padding: 1.5rem 1.2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+      border: 1px solid #eef2f6;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      background: white;
+      border-color: #cbd5e0;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: #1f3a4b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stat-badge {
+      display: inline-block;
+      background: #2a7f6e;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+    }
+
+    .highlight {
+      background: #e2f0ed;
+      border-left: 4px solid #2a7f6e;
+      padding: 0.8rem 1.2rem;
+      border-radius: 0.75rem;
+      margin: 1.2rem 0;
+      font-weight: 500;
+    }
+
+    .list-bullet {
+      list-style: none;
+      padding: 0;
+    }
+    .list-bullet li {
+      padding: 0.4rem 0 0.4rem 1.8rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%232a7f6e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>') left center no-repeat;
+      background-size: 1.1rem;
+    }
+
+    .icon-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #eef2f6;
+      padding: 0.2rem 0.8rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .flex-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.2rem;
+      margin: 0.75rem 0;
+    }
+
+    .flex-wrap .chip {
+      background: white;
+      border: 1px solid #dce2ea;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    .img-placeholder {
+      background: #e6ecf3;
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem;
+      color: #4a5f73;
+      font-weight: 500;
+      min-height: 70px;
+      border: 1px dashed #9bafc2;
+      margin: 0.8rem 0;
+    }
+
+    .img-placeholder img {
+      max-width: 100%;
+      border-radius: 1rem;
+      display: block;
+    }
+
+    .img-placeholder i {
+      font-style: normal;
+      background: #d3dfea;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+    }
+
+    .productivity {
+      background: #f0f5fa;
+      border-radius: 1.2rem;
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+    }
+    .productivity span {
+      font-weight: 600;
+    }
+
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin: 1rem 0;
+    }
+    .team-card {
+      background: #f3f7fc;
+      padding: 0.6rem 1.4rem;
+      border-radius: 60px;
+      font-weight: 500;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2.5rem;
+      background: #eaf0f6;
+      padding: 1.4rem 1.8rem;
+      border-radius: 2rem;
+      margin: 1.8rem 0 0.5rem;
+      align-items: center;
+    }
+    .contact-row a {
+      color: #1a2d3f;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .contact-row a:hover {
+      border-bottom-color: #2a7f6e;
+    }
+
+    .patent-badge {
+      background: #1f3a4b;
+      color: white;
+      padding: 0.2rem 1.2rem;
+      border-radius: 60px;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #dce4ed;
+      margin-top: 2.2rem;
+      padding-top: 1.8rem;
+      color: #3e5569;
+      font-size: 0.9rem;
+    }
+
+    /* Для мобильных */
+    @media (max-width: 700px) {
+      .container { padding: 1.5rem 1rem; }
+      h1 { font-size: 1.8rem; }
+      .grid-2col { grid-template-columns: 1fr; gap: 1.2rem; }
+      .productivity { flex-direction: column; align-items: start; gap: 0.6rem; }
+      .contact-row { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Адаптив картинок */
+    .img-placeholder img {
+      max-height: 180px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* иконки-заглушки для картинок если не загружены */
+    .demo-img {
+      background: #d4dee9;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      color: #1f3a4b;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ШАПКА -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem;">
+    <div>
+      <h1>Комплекс для переработки пластмассы</h1>
+      <div class="speaker">Спикер: Скоробогатов Ярослав</div>
+    </div>
+  </div>
+
+  <!-- ПРОБЛЕМА -->
+  <h2>Проблема</h2>
+  <div class="grid-2col">
+    <div class="card">
+      <h3>📊 7 млн тонн</h3>
+      <p>Ежегодно в России образуется более <strong>7 млн тонн</strong> пластиковых отходов.</p>
+      <div style="margin: 0.8rem 0;"></div>
+      <div class="highlight">Высокий порог входа и низкая прибыль: сдавать пластик невыгодно, перерабатывать — тем более.</div>
+      <div style="margin-top: 0.5rem; background: #edf2f8; padding: 0.8rem; border-radius: 0.8rem;">
+        <span style="font-weight: 600;">Перерабатываемый пластик в РФ 2023</span>
+        <div style="display: flex; gap: 1.5rem; margin-top: 0.3rem; flex-wrap: wrap;">
+          <span><span style="background: #2a7f6e; color: white; padding: 0.1rem 0.9rem; border-radius: 30px;">↻ перерабатывают</span></span>
+          <span><span style="background: #b0c4d9; color: #1f2c3a; padding: 0.1rem 0.9rem; border-radius: 30px;">✕ не перерабатывают</span></span>
+        </div>
+      </div>
+      <!-- картинка-заглушка: диаграмма из презентации -->
+
+        <img src="diagram_img.png" alt="Диаграмма переработки">
+
+    </div>
+    <div class="card">
+      <h3>🎯 Целевая аудитория</h3>
+      <ul class="list-bullet">
+        <li>Малый бизнес в сфере утилизации</li>
+        <li>Эко-предприниматели</li>
+        <li>Мастерские и производства</li>
+        <li>3D-печатные студии</li>
+      </ul>
+      <div style="margin-top: 1.2rem; background: #ecf3f0; padding: 0.7rem 1rem; border-radius: 0.8rem;">
+        <span style="font-weight: 500;">👥 “Сделать переработку доступной и технологичной”</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- РЕШЕНИЕ -->
+  <h2>Решение</h2>
+  <div class="card" style="background: #ecf3f0; border: none;">
+    <h3>⚙️ Компактный модульный комплекс</h3>
+    <p style="font-size: 1.05rem;"><strong>Универсальная автоматика</strong> для вторичной переработки пластмассы.</p>
+    <div class="flex-wrap">
+      <span class="chip">♻️ PET</span>
+      <span class="chip">🧴 HDPE</span>
+      <span class="chip">📦 PP</span>
+      <span class="chip">🛍️ LDPE</span>
+      <span class="chip">🧵 Филамент 3D-печати</span>
+    </div>
+    <div class="productivity">
+      <span>📏 Производительность листов: <strong>4,5 кг/ч</strong></span>
+      <span>📏 Производительность прутка: <strong>1,4 кг/ч</strong></span>
+    </div>
+
+      <img src="diagram2_img.png" alt="Комплекс переработки"> 
+
+  </div>
+
+  <!-- МИССИЯ И ПРОМЕЖУТОЧНЫЕ РЕЗУЛЬТАТЫ -->
+  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem;">
+    <div style="flex: 2; min-width: 250px;">
+      <h2 style="margin-top: 0;">Миссия</h2>
+      <div class="highlight" style="font-size: 1.1rem;">
+        Сделать переработку пластика доступной и технологичной для малого бизнеса, чтобы снизить экологический ущерб от миллионов тонн отходов.
+      </div>
+    </div>
+    
+  </div>
+
+
+
+
+  <!-- КОМАНДА, ВЛОЖЕНИЯ И ПРОМЕЖУТОЧНЫЕ -->
+  <h2 style="margin-top: 2rem;">Промежуточные результаты</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+    <div style="background: #e2edf0; padding: 1.2rem; border-radius: 1.5rem; flex: 1;">
+      <span style="font-weight: 700;">📌 Расчеты</span>
+         <img src="qr.png" alt="Патент"> 
+    </div>
+    
+    <div style="background: #e2edf0; padding: 1.2rem; border-radius: 1.5rem; flex: 1;">
+      <span style="font-weight: 700;">📌 Патент</span>
+         <img src="patent.png" alt="Патент"> 
+    </div>
+  </div>
+
+  <h2>Команда</h2>
+  <img src="team.png" alt="Команда Второй цикл" style="border-radius: 1.5rem; margin-top: 0.8rem; max-width: 100%;"> 
+
+
+    <!-- ПОЛЬЗА ПРОЕКТА -->
+  <h2>Чем полезен проект?</h2>
+  <div class="grid-2col" style="margin-bottom: 0.5rem;">
+    <div class="card"><h3>💰 Доступность</h3> Делает оборудование доступным для малого бизнеса, снижает порог входа.</div>
+    <div class="card"><h3>🌱 Экологичность</h3> Снижает нагрузку на свалки и логистику.</div>
+    <div class="card"><h3>🧠 Простота</h3> Упрощает переработку за счёт автоматики, не требуется глубоких знаний.</div>
+    <div class="card"><h3>📈 Экономия</h3> Переработка на месте повышает ценность отходов в 2–3 раза в сравнении с дроблёнкой и кипой.</div>
+  </div>
+
+  <!-- КОНТАКТЫ -->
+  <div class="contact-row">
+    <span style="font-weight: 600;">📞 Ярослав Скоробогатов</span>
+    <a href="tel:+79049621601">+7 904 962 1601</a>
+    <a href="#">📱 Telegram: @l_am_nerd</a>
+    <a href="mailto:aroslavskorobogatov59539@gmail.com">✉️ aroslavskorobogatov59539@gmail.com</a>
+  </div>
+
+  <!-- Футер с картинкой "Комплекс для переработки" (повтор) -->
+  <div style="margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; background: #eaf0f6; border-radius: 2rem; padding: 0.8rem 1.5rem;">
+    <span style="font-weight: 600;">Комплекс для переработки пластмассы</span>
+    <span style="margin-left: auto; display: flex; gap: 0.5rem;">
+      <span class="icon-label">♻️ Второй цикл</span>
+    </span>
+  </div>
+
+
+
+
+</div>
+<!-- контейнер -->
+</body>
+</html>
